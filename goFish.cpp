@@ -182,18 +182,13 @@ void checkForSet(Player *p, Deck *ocean){
 		count = 0;
 		for(int i = 0; i<p->hand.size(); i++){
 			if (p->hand.at(i).number == j){
-				cout<<"1";
 				count++;
 			}
 			if (count == 4){
 				for (int k = 0; k<p->hand.size(); k++){
-					cout<<"K"<<k;
 					if (p->hand.at(k).number == j){
-						cout<<"2";
 						ocean->discard.push_back(p->hand.at(k));
-						cout<<"3";
 						p->hand.erase(p->hand.begin()+k);
-						cout<<"4";
 						k--;
 						i--;
 					}
@@ -206,23 +201,14 @@ void checkForSet(Player *p, Deck *ocean){
 
 int Game::ask(Player *asking, Player *beingAsked, int cardAskedFor){
 	int num = 0;
-	//cout<<"Beginning of funct ";
-	//printHand(*beingAsked);
-	//cout<<endl;;
 	for (int i = 0; i<beingAsked->hand.size(); i++){
-		cout<<"I"<<i;
 		if (beingAsked->hand.at(i).number == cardAskedFor){
-			cout<<"2";
 			asking->hand.push_back(beingAsked->hand.at(i));
-			cout<<"3";
 			beingAsked->hand.erase(beingAsked->hand.begin()+i);
 			i--;
 			num ++;
 		}
 	}	
-	//cout<<"End of funct";
-	//printHand(*beingAsked);
-	//cout<<endl;
 	cout<<"Player "<<beingAsked->number<<" had "<<num<<" "<<cardAskedFor<<"'s."<<endl<<endl;
 	return num;
 }

@@ -3,17 +3,6 @@ GoFish
 
 Compile on Windows, Linux, Mac, Unix
 
-To Do:
--> Integrate Stack into Code
--> Add good commenting
--> Continue debugging
-
-References:
-http://en.wikipedia.org/wiki/Go_Fish
-Lucy W. - Oregon State University Open Source Lab (Git fork)
-http://boardgames.about.com/od/cardgames/a/go_fish.htm
-http://rosettacode.org/wiki/Go_Fish/C
-http://www.cplusplus.com/forum/beginner/98524/
 */
 
 #include<string>

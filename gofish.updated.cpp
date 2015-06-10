@@ -1,6 +1,8 @@
 /*
 GoFish
 
+Compile on Windows, Linux, Mac, Unix
+
 To Do:
 -> Integrate Stack into Code
 -> Add good commenting
@@ -97,7 +99,10 @@ private:
 	int players;
 };
 
-// Function prototypes
+// Global Variables
+int os;
+
+// Function Prototypes
 int errorCheck(int);
 int getPlayers();
 void printHand(Player);
@@ -111,6 +116,7 @@ int main()
 {
 	// Menu Start
 	cout << "\n        GO FISH!        \n\n";
+
 	Game goFish = Game();
 	Deck pool = Deck();
 	pool.cards.resize(52);
@@ -146,9 +152,26 @@ int errorCheck(int a)
 // **********************
 void printHand(Player p)
 {
-	system("cls");		// Clear the screen so the next player doesn't see the previous players cards
+	if (getenv("windir"))
+		os = 1;	// True, its Windows
+	else
+		os = 0;	// Linux, Unix, Mac, Etc
+
+	// Clear the screen so the next player doesn't see the previous players cards (for all OS's)
+	for (int i = 0; i < 1000; i++)
+			cout << endl; 
+
+	// For next players go ahead
 	cout << "\nPlayer " << p.number << "'s turn to take the console. ";
-	system("pause");	// For next players go ahead
+	if (os = 0)
+		system("pause");
+	else
+	{
+		cout << "Press [Enter] to continue.";
+		cin.ignore().get();
+	}
+		
+
 	cout << endl;
 	cout << "** Player " << p.number << "'s Hand **" << endl;
 	for (int i = 0 ; i < p.hand.size() ; i++)
@@ -304,7 +327,15 @@ void Game::playGame(Game *goFish, vector<Player> *p, Deck *pool)
 			checkForSet(&p->at(i), pool);
 			checkForWin(&p->at(i));
 			cout << endl;
-			system("pause");
+			
+			if (getenv("windir"))
+				system("pause");
+			else
+			{
+				cout << "Press [Enter] to continue.";
+				cin.ignore().get();
+			}
+				
 		}
 	}
 }
